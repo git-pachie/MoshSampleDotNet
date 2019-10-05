@@ -65,13 +65,58 @@ namespace SampleMosh.Controllers
         [HttpPost]
         public ActionResult CreateEmployee(Models.Employee employee )
         {
+            employee.DateCreated = DateTime.Now;
+            employee.CreatedBy = "Admin";
+
+            if(employee.Id == 0)
+            {
+                _context.Employees.Add(employee);
+            }
+            else
+            {
+                var result = _context.Employees.SingleOrDefault(x => x.Id == employee.Id);
+
+                result.Name = employee.Name;
+                result.LastName = employee.LastName;
+                result.DepartmentId = employee.DepartmentId;
+                result.BirthDate = employee.BirthDate;
+                result.LastDateModified = DateTime.Now;
+                result.LastModifiedBy = "Admin";
+
+            }
+
+            
+
+            _context.SaveChanges();
+
             var model = new ViewModels.EmployeeFormViewModel
             {
                 Employee = employee,
                 Departments = _context.Departments.ToList()
             };
 
+            
+
+            
+
             return View(model);
+        }
+
+        public ActionResult EditEmployee(int id)
+        {
+            var result = _context.Employees.SingleOrDefault(x => x.Id == id);
+
+            var model = new ViewModels.EmployeeFormViewModel
+            {
+                Employee = result,
+                Departments = _context.Departments.ToList()
+            };
+
+
+            return View("CreateEmployee", model);
+
+
+
         }
 
 
