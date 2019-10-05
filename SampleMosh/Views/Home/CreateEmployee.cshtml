@@ -42,12 +42,14 @@
             @Html.LabelFor(model => model.Employee.DepartmentId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
 
-                @Html.DropDownListFor(model=> model.Employee.Department, new SelectList ( Model.Departments , "Id", "DepartmentName" ), "Select Department" , new { @class = "form-control" } )
+                @Html.DropDownListFor(model=> model.Employee.DepartmentId, new SelectList ( Model.Departments , "Id", "DepartmentName" ), "Select Department" , new { @class = "form-control" } )
 
                @* @Html.EditorFor(model => model.Employee.DepartmentId, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Employee.DepartmentId, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        @Html.HiddenFor(x=> x.Employee.Id)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

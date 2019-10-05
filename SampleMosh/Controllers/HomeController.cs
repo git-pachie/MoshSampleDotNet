@@ -62,6 +62,18 @@ namespace SampleMosh.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult CreateEmployee(Models.Employee employee )
+        {
+            var model = new ViewModels.EmployeeFormViewModel
+            {
+                Employee = employee,
+                Departments = _context.Departments.ToList()
+            };
+
+            return View(model);
+        }
+
 
 
     }
