@@ -15,5 +15,9 @@ namespace SampleMosh.Models
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
+
+        public DbSet<EmployeeFavoriteFood> EmployeeFovoriteFoods { get; set; }
+
+        public DbSet<CodeFavoriteFood> CodeFavoriteFoods { get; set; }
     }
 }
