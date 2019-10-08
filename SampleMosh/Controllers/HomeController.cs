@@ -50,25 +50,12 @@ namespace SampleMosh.Controllers
         public ActionResult CreateEmployee()
         {
 
-            var employee = new Models.Employee
-            { Id = 0 };
-
-            //var lsFoods = new List<Dto.CodeFavoriteFoodDTO>();
-
-            //foreach(var item in _context.CodeFavoriteFoods)
-            //{
-            //    lsFoods.Add(new Dto.CodeFavoriteFoodDTO
-            //    {
-            //        FavoriteFoodName = item.FoodName
-            //    ,
-            //        SelectedId = false
-            //    });
-            //}
-
+            var employee = new Dto.EmployeeDto(){ Id = 0 };
 
             var model = new ViewModels.EmployeeFormViewModel(_context)
             {
                 Employee = employee
+                , Title = "Create New Employee"
 
             };
 
@@ -78,33 +65,33 @@ namespace SampleMosh.Controllers
         [HttpPost]
         public ActionResult CreateEmployee(ViewModels.EmployeeFormViewModel vm)
         {
-            vm.Employee.DateCreated = DateTime.Now;
-            vm.Employee.CreatedBy = "Admin";
-
+           
 
             var selecteFoodList = new List<EmployeeFavoriteFood>();
 
 
             if (vm.Employee.Id == 0)
             {
-                //vm.Employee.FavoriteFoods = new List<EmployeeFavoriteFood>();
 
-                //foreach (var itm in vm.FavoriteFoodDtos)
-                //{
-                //    vm.Employee.FavoriteFoods.Add(new EmployeeFavoriteFood { CodeFovoriteFood = new CodeFavoriteFood { id = itm.SelectedId } });
-                //}
+                var newEmployee = new Models.Employee {
+                     Id = 0
+                     , Name = vm.Employee.Name
+                     , LastName = vm.Employee.LastName
+                     , BirthDate = vm.Employee.BirthDate
+                     , DepartmentId = vm.Employee.DepartmentId
+                     , DateCreated = DateTime.Now
+                     , CreatedBy = "Admin"
 
-                _context.Employees.Add(vm.Employee);
+                };
+
+
+                _context.Employees.Add(newEmployee);
 
                 foreach (var itm in vm.FavoriteFoodDtos.Where(x => x.IsSelected == true))
                 {
-                    _context.EmployeeFovoriteFoods.Add(new EmployeeFavoriteFood { Employees = vm.Employee, CodeFavoriteId = itm.SelectedId });
+                    _context.EmployeeFovoriteFoods.Add(new EmployeeFavoriteFood { Employees = newEmployee, CodeFavoriteId = itm.SelectedId });
                 }
 
-
-                   
-                //{  Employees = vm.Employee
-                //, CodeFovoriteFood = new CodeFavoriteFood {  } })
             }
             else
             {
@@ -169,9 +156,14 @@ namespace SampleMosh.Controllers
             var result = _context.Employees
                 .SingleOrDefault(x => x.Id == id);
 
+            if(result == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
             var model = new ViewModels.EmployeeFormViewModel(_context, result)
             {
-                Employee = result
+                Employee = new Dto.EmployeeDto { Id = result.Id, Name = result.Name, LastName = result.LastName, BirthDate = result.BirthDate, Department = result.Department, DepartmentId = result.DepartmentId, FavoriteFoods = result.FavoriteFoods }
             };
 
 

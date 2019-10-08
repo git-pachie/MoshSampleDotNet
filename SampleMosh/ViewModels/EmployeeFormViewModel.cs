@@ -1,4 +1,5 @@
-﻿using SampleMosh.Models;
+﻿using SampleMosh.Dto;
+using SampleMosh.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,12 @@ namespace SampleMosh.ViewModels
 {
     public class EmployeeFormViewModel
     {
-        public Employee Employee { get; set; }
+        public EmployeeDto Employee { get; set; }
         public IEnumerable<Department> Departments { get; set; }
 
         public List<Dto.CodeFavoriteFoodDTO> FavoriteFoodDtos { get; set; }
+
+        public string Title { get; set; }
 
         public EmployeeFormViewModel()
         {
