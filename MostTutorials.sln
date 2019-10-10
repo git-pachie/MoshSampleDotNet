@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMosh", "SampleMosh\SampleMosh.csproj", "{09BA8BD9-E153-4652-BB6F-3E02FF9921FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Automapper", "Test.Automapper\Test.Automapper.csproj", "{1E0EC066-87B4-4420-B230-42705BA71483}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{09BA8BD9-E153-4652-BB6F-3E02FF9921FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09BA8BD9-E153-4652-BB6F-3E02FF9921FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09BA8BD9-E153-4652-BB6F-3E02FF9921FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E0EC066-87B4-4420-B230-42705BA71483}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E0EC066-87B4-4420-B230-42705BA71483}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E0EC066-87B4-4420-B230-42705BA71483}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E0EC066-87B4-4420-B230-42705BA71483}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
